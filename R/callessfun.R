@@ -55,6 +55,7 @@ callessfun<-function(file_location,usable_tally_list,parameter_list){
     pdata1$pfdr<-p.adjust(pdata1$pvalue,"fdr")
     pdata1$Ess_fdr<-"NE_fdr"
     pdata1$Ess_fdr[which(pdata1$pfdr<0.05)]<-"E_fdr"
+    x=pdata1
 
   })
 

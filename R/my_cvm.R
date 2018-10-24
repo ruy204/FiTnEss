@@ -16,7 +16,7 @@ my_cvm = function (x, null = "punif", ..., nullname){
   if (is.character(null))
     nulltext <- null
   if (missing(nullname) || is.null(nullname)) {
-    reco <- recogniseCdf(nulltext)
+    reco <- goftest::recogniseCdf(nulltext)
     nullname <- if (!is.null(reco))
       reco
     else paste("distribution", sQuote(nulltext))
@@ -45,9 +45,9 @@ my_cvm = function (x, null = "punif", ..., nullname){
   xsd = sd(x)
   k <- seq_len(n)
 
-  omega2 <- 1/(12 * n) + sum(Heaviside(k,0.25*n)*(U - (2 * k - 1)/(2 * n))^2)
+  omega2 <- 1/(12 * n) + sum(fBasics::Heaviside(k,0.25*n)*(U - (2 * k - 1)/(2 * n))^2)
   ## -- changed to 0.5
-  PVAL <- pCvM(omega2, n = n, lower.tail = FALSE)
+  PVAL <- goftest::pCvM(omega2, n = n, lower.tail = FALSE)
   names(omega2) <- "omega2"
   METHOD <- c("Cramer-von Mises test of goodness-of-fit",
               paste("Null hypothesis:",nullname))

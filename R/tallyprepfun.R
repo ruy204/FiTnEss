@@ -15,44 +15,16 @@ tallyprepfun<-function(strain,file_location){
 
   if (strain %in% c("UCBPP","PA14","pa14","ucbpp")){
     strain<-"UCBPP"
-    st<-"UCBPP-PA14"
-    supp<-list.files("/idi/hunglabusers/poulsen/pmar_allstrains/UCBPP/rui")
-    supp<-supp[!supp %in% supp[grep("_tally.txt",supp)]]
-    homo<-read.delim("/idi/hunglabusers/poulsen/pmar_allstrains/UCBPP/rui/50bp_homologous_TAsites_UCBPP_difficult_method.txt",header = FALSE)
-    np<-supp[grep("nonpermissive",supp[grep(strain,supp)])]
-    nonPermissiveTA<-read.delim(paste("/idi/hunglabusers/poulsen/pmar_allstrains/UCBPP/rui",np,sep="/"),header = FALSE)
-    print(st)
-    print(np)
+    st<-"PA14"
   }else{
-    supp<-list.files("/idi/hunglabusers/poulsen/pmar_allstrains/LB_20171130/new_fasta_alignments/Rui_analysis_files/")
     st<-strain
-    homo<-paste("/idi/hunglabusers/poulsen/pmar_allstrains/LB_20171130/new_fasta_alignments/Rui_analysis_files/new_homo/50bp_homologous_TAsites_",st,"_easy_method.txt",sep="")
-    homo<-read.delim(homo,header = FALSE)
-    np<-supp[grep(strain,supp)][grep("nonpermissive",supp[grep(strain,supp)])]
-    nonPermissiveTA<-read.delim(paste("/idi/hunglabusers/poulsen/pmar_allstrains/LB_20171130/new_fasta_alignments/Rui_analysis_files",np,sep="/"),header = FALSE)
-    print(st)
-    print(np)
   }
+  data(paste("data/",st,"_support.RData",sep=""))
+  nonPermissiveTA<-support_list[[1]]
+  homo<-support_list[[2]]
+  genelist<-support_list[[3]]
+  geneinfo<-support_list[[4]]
 
-  cluster<-read.xlsx("/idi/hunglabusers/poulsen/pmar_allstrains/LB_20171130/new_fasta_alignments/Rui_analysis_files/clusters_compiled.xlsx",sheet = 1, startRow = 1, colNames = TRUE)
-  cluster$strain<-gsub("Pseudomonas aeruginosa ","",cluster$Genome)
-  cluster$strain<-gsub("PSA","",cluster$strain)
-  colnames(cluster)<-c("gene_name","patric_id","Locus.CIA","length","cluster","desc","strain")
-  cluster2<-cluster %>% dplyr::filter(strain==st)
-  print(st)
-
-  if (strain=="UCBPP"){
-    genelist<-read.table("/idi/hunglabusers/poulsen/pmar_allstrains/UCBPP/rui/genelist_UCBPP.txt")
-    geneinfo<-read.table("/idi/hunglabusers/poulsen/pmar_allstrains/UCBPP/rui/UCBPP_strand_type_information.txt")
-  }else{
-    gnlist<-supp[grep("genelist",supp)][grep(strain,supp[grep("genelist",supp)])]
-    genelist<-read.table(paste("/idi/hunglabusers/poulsen/pmar_allstrains/LB_20171130/new_fasta_alignments/Rui_analysis_files/",gnlist,sep="/"))
-    strclu<-list.files("/idi/hunglabusers/poulsen/pmar_allstrains/LB_20171130/new_fasta_alignments/Rui_analysis_files")
-    strclu<-strclu[grep("strand_type",strclu)]
-    strclu<-strclu[grep(st,strclu)]
-    geneinfo<-read.table(paste("/idi/hunglabusers/poulsen/pmar_allstrains/LB_20171130/new_fasta_alignments/Rui_analysis_files",strclu,sep="/"))
-    print(strclu)
-  }
   colnames(genelist)<-c("V1","Locus.CIA","gene_start","gene_stop")
   genelist$strain<-st
   genelist<-genelist %>% left_join(cluster2,by=c("Locus.CIA","strain"))
