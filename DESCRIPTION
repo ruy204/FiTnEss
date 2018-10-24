@@ -1,9 +1,15 @@
 Package: FiTnEss
 Type: Package
-Title: What the Package Does (Title Case)
+Title: FiTnEss: Finding TnSeq Essential Genes
 Version: 0.1
 Date: 2018-10-23
 Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: More about what it does (maybe more than one line)
+Description: With this package, we could process raw tally TnSeq tally files, and identify potential essential genes.
 License: What license is it under?
 LazyData: TRUE
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
+Imports: dplyr, fBasics, goftest, openxlsx, pastecs, stats, tidyr
+Suggests: ggplot, graphics
+
