@@ -19,18 +19,25 @@ tallyprepfun<-function(strain,file_location){
   }else{
     st<-strain
   }
-  data(paste("data/",st,"_support.RData",sep=""))
-  nonPermissiveTA<-support_list[[1]]
-  homo<-support_list[[2]]
-  genelist<-support_list[[3]]
-  geneinfo<-support_list[[4]]
+  nm<-paste(st,"_support",sep="")
+
+  data("support_files")
+
+  support_data<-support_list[[st]]
+  nonPermissiveTA<-support_data[[1]]
+  homo<-support_data[[2]]
+  genelist<-support_data[[3]]
+  geneinfo<-support_data[[4]]
+
+  data("cluster_info")
+  cluster2<-cluster %>% dplyr::filter(strain==st) %>% dplyr::select(Locus.CIA,strain,desc)
 
   colnames(genelist)<-c("V1","Locus.CIA","gene_start","gene_stop")
   genelist$strain<-st
-  genelist<-genelist %>% left_join(cluster2,by=c("Locus.CIA","strain"))
   colnames(geneinfo)<-c("type","strand","Locus.CIA")
   genelist<-genelist %>% full_join(geneinfo,by="Locus.CIA")
-  genelist<-genelist %>% dplyr::select(Locus.CIA,strain,type,gene_start,gene_stop,strand,gene_name,cluster,desc)
+  genelist<-genelist %>% left_join(cluster2,by=c("Locus.CIA","strain"))
+  genelist<-genelist %>% dplyr::select(Locus.CIA,strain,type,gene_start,gene_stop,strand,desc)
 
   if (strain=="UCBPP"){
     genelist$strain<-"UCBPP"

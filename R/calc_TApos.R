@@ -7,6 +7,7 @@ require(ggplot2)
 
 calc_TApos <- function(tally, genelist) {
   x <- base::merge(tally, genelist, by = c('Locus.CIA',"strain"), all.x = TRUE)
+  # x <- tally %>% full_join(genelist,by = c("Locus.CIA","strain"))
   x <- dplyr::filter(x, type == 'CDS') #5858 genes
   x <- dplyr::group_by(x, Locus.CIA) %>%
     mutate(TA.gene.pos = TA_start - gene_start + 1) %>%
