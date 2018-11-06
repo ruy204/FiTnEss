@@ -7,23 +7,23 @@
 The function imports raw tally .txt file into the function and start processing.
 }
 \usage{
-import_raw_tally(x,CIA=TRUE)
+import_raw_tally(filename,CIA=TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
-}
+  \item{filename}{directory and name for raw tally .txt file, for example: \code{"/folder/raw_tally_rep1.txt"}}
+  \item{CIA}{gene type, \code{CIA=TRUE} only include}
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+The input data needs to be .txt file, with 6 columns: \code{index}(row index, or chromosome index), \code{TA_start}(start position of TA site),
+\code{TA_end}(end position of TA site), \code{Locus.CIA}(gene name), \code{plus_n}(number of reads aligned on + strand), \code{minus_n}(number of reads aligned on - strand).
+
+For example, \code{raw_tally[1,]}
+
+\code{ChrI  3  4  PA14_00010  0  1}
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+Returns a dataframe
 }
 \references{
 %% ~put references to the literature/web site here ~

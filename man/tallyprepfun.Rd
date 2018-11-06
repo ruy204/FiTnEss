@@ -1,36 +1,37 @@
 \name{tallyprepfun}
 \alias{tallyprepfun}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{tallyprepfun
+\title{Preparing usable tally files from raw data
 %%  ~~function to do ... ~~
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-tallyprepfun(x)
+tallyprepfun(strain, file_location)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
-}
+  \item{strain}{identify strain.}
+  \item{file_location}{full path of all raw tally files, replicates are separated by \code{","} without space.}
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+This is a function for raw tally data processing. Input data are raw tally files and strain type, output data are usable tally files for downstream analysis.
+
+Current available \code{strain} options include \code{c("PA14","X13273","PS75","CF77","BWH015","BWH013","BWH005","BL23","19660")}.
+
+Raw data are usually \code{.txt} files, which contain two columns: \code{}. Example of raw data see \code{data("PA14_raw_tally")}
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+A list containing all usable tally files of each replicate will be returned.
+
+For example, \code{list(usable_replicate1,usable_replicate2)}
 }
 \references{
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
+
 }
 \note{
 %%  ~~further notes~~
@@ -39,19 +40,24 @@ tallyprepfun(x)
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+
+\code{\link{import_raw_tally}}
+
+\code{\link{calc_TApos}}
+
+\code{\link{find_homo}}
+
+\code{\link{denote_coreTA}}
+
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+data("PA14_raw_tally")
+usable_list<-tallyprepfun("PA14","PA14_raw_tally_rep1,PA14_raw_tally_rep2")
 
-## The function is currently defined as
-function (x)
-{
-  }
+own_data<-tallyprepfun("CF77","/folder1/CF77_rep1.txt,/folder1/CF77_rep2.txt,/folder1/CF77_rep3.txt")
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
+\keyword{ ~tally }
 \keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
