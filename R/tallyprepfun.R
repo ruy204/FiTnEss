@@ -21,7 +21,7 @@ tallyprepfun<-function(strain,file_location){
   }
   nm<-paste(st,"_support",sep="")
 
-  data("support_files")
+  load("support_list")
 
   support_data<-support_list[[st]]
   nonPermissiveTA<-support_data[[1]]
