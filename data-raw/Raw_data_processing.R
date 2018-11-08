@@ -37,4 +37,10 @@ colnames(cluster)<-c("gene_name","patric_id","Locus.CIA","length","cluster","des
 cluster$strain[which(cluster$strain=="UCBPP-PA14")]<-"UCBPP"
 devtools::use_data(cluster)
 
+#raw tally file example
+
+rawtally<-read.table("data-raw/raw_tally_example.txt")
+rawtally<-rawtally[c(1:10,100:110),]
+devtools::use_data(rawtally)
+
 
