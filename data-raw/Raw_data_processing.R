@@ -39,8 +39,27 @@ devtools::use_data(cluster)
 
 #raw tally file example
 
-rawtally<-read.table("data-raw/raw_tally_example.txt")
+rawtally<-read.table("data-raw/raw_tally_example.txt",sep="\t")
 rawtally<-rawtally[c(1:10,100:110),]
 devtools::use_data(rawtally)
+
+#results table example
+
+result<-read.xlsx("data-raw/results_example.xlsx",sheet=1,colNames = TRUE)
+result<-result %>% dplyr::filter(Locus.CIA %in% c("PA14_00030","PA14_00070","PA14_00050","PA14_00060")) %>% arrange(Locus.CIA)
+devtools::use_data(result)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

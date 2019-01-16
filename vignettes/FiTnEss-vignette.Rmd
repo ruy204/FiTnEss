@@ -6,6 +6,7 @@ output:
   rmarkdown::html_document:
     highlight: pygments
     toc: true
+    toc_depth: 5
     fig_width: 5
     
 vignette: >
@@ -16,48 +17,128 @@ vignette: >
 
 ## Abstract
 
-Transposon insertion sequencing (Tn-Seq) is a high-throughput technique to generate and culture a large random collection of genetically perturbed bacteria, followed by sequencing to measure the frequency of each perturbation in the culture. Tn-Seq is used for the identification of essential genes by utilizing the fact that mutants carrying insertions in such genes are expected to be greatly depleted in the growth culture. Here we present FiTnEss (Finding Tn-Seq Essential Genes) - a novel statistical method to identify gene essentiality using Tn-Seq data. The method contains only two global parameters that are estimated from the data. It is robust and has greater power to detect essential genes than TRANSIT, the leading existing method. We implemented FiTnEss on 9 strains of Pseudomonas aeruginosa under 5 biological conditions, and successfully characterized its core essential genome, validated by single-gene deletion experiments. A Bioconductor package for FiTnEss is under development. 
+Transposon insertion sequencing (Tn-Seq) is a high-throughput technique to generate and culture a large random collection of genetically perturbed bacteria, followed by sequencing to measure the frequency of each perturbation in the culture. Tn-Seq is used for the identification of essential genes by utilizing the fact that mutants carrying insertions in such genes are expected to be greatly depleted in the growth culture. 
 
-```{r, dev='CairoPDF',echo=FALSE}
-library(FiTnEss)
-library()
+Here we present FiTnEss (Finding Tn-Seq Essential Genes) - a novel statistical method to identify gene essentiality using Tn-Seq data. The method contains only two global parameters that are estimated from the data. It is robust and has greater power to detect essential genes than most current existing methods.
+
+## Introduction
+
+#### General Introduction
+
+In this package, we present a major function called `fitnessRun` conducting one-step analysis from raw tally files to final essential gene calls. This major function consists of three analysis steps including 
+
+- raw tally file processing
+- model fitting
+- essential gene identifications
+
+#### Quick Start
+
+```{r, dev='CairoPDF',eval=FALSE, warning=FALSE}
+#Main function
+fitnessRun(strain,file_location,save_location,repeat_time)
+
+#Example
+fitnessRun(strain = "PA14",
+           file_location = "/home/folder/PA14/rep1.txt,/home/folder/PA14/rep2.txt,/home/folder/PA14/rep3.txt",
+           save_location = "/home/folder/PA14/results.xlsx",
+           repeat_time = 3)
 ```
 
-```{r, dev='CairoPDF'}
+#### Data in this package
+
+Example data:  
+
+- `rawtally`: sample of raw tally file
+- `result`: sample of results table
+
+Pre-processing supporting files:
+
+For these supporting files, we currently offer nine strains for raw tally data processing: 
+
+`PA14, X13273, PS75, BWH015, BWH013, BWH005, BL23, CF77, 19660`
+
+Supporting files include: 
+
+- `support_list`: supporting file for raw tally file processing
+- `cluster`: gene description and cluster information, also used for raw tally processing
+
+## Pipeline Workflow
+
+#### Load package
+
+```{r, dev='CairoPDF', warning=FALSE}
 library(FiTnEss)
 ```
 
+#### Raw tally file format
 
-## Vignette Info
+Raw tally file is in `.txt` format, and usually contains 6 columns: 
 
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
+`chromosome`, `TA start position`, `TA stop position`, `gene name`, `reads on "+" strand`, `reads on "-" strand`
 
-## Styles
+For example: 
 
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
+```{r, dev='CairoPDF', warning=FALSE}
+# load("data/rawtally.rda")
+head(rawtally)
+```
 
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
+#### Run analysis
 
-## Figures
+```{r, dev='CairoPDF',eval=FALSE, warning=FALSE}
+fitnessRun(strain,file_location,save_location,repeat_time=3)
+```
 
-The figure sizes have been customised so that you can easily put two images side-by-side. 
+#### Output results
 
-You can enable figure captions by `fig_caption: yes` in YAML:
+```{r, dev='CairoPDF', warning=FALSE}
+# load("data/result.rda")
+head(result)
+```
 
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
+The results are automatically saved into `.xlsx` format with each tab contains results from one replicate. 
 
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
+In this table, 
 
-## More Examples
+## Functions in detail
 
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
+This package contains functions for three major steps of calling essential genes:
+
+#### Raw tally file processing
+
+```{r, dev='CairoPDF',eval=FALSE, warning=FALSE} 
+tallyprepfun(strain,raw_tally_location_name)
+```
+
+This function consisted of four parts: 
+
+- import tally file: `import_raw_tally()`
+- find homologous TA sites: `find_homo()`
+- calculate TA positions: `calc_TApos()`
+- denote core TA sites: `denote_coreTA()`
+
+```{r, dev='CairoPDF',eval=FALSE, warning=FALSE} 
+#Example
+tallyprepfun("PA14","/home/folder/PA14/raw_tally_replicate1.txt")
+```
+
+#### Model fitting
+
+```{r, dev='CairoPDF',eval=FALSE, warning=FALSE} 
+calcparafun(strain, usable_tally_list, save_location, rep_time)
+```
 
 
-Also a quote using `>`:
 
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
+#### Identify essential genes
+
+This package also contain data:
+
+```{r, dev='CairoPDF', warning=FALSE} 
+
+```
+
+## Theory Explanation
+
+
+

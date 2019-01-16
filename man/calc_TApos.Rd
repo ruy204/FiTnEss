@@ -1,20 +1,21 @@
 \name{calc_TApos}
 \alias{calc_TApos}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{calc_TApos
-%%  ~~function to do ... ~~
+\title{Map TA sites onto corresponding genes
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+This function is part of the \code{tallyprepfun} function, which pre-process raw tally file for analysis.
+
+In this step, the function uses raw tally .txt file (imported from function \code{import_raw_tally})
+and genelist file (internal data called from function \code{tallyprepfun}) to map TA sites into corresponding genes.
 }
 \usage{
-calc_TApos(x)
+calc_TApos(tally,genelist)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
-}
+  \item{tally}{raw tally.txt file that imported from \code{import_raw_tally} function}
+  \item{genelist}{internal data in the package, strain-specific, containing gene name, TA site positions of each gene}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -42,16 +43,8 @@ calc_TApos(x)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (x)
-{
-  }
-}
+calc_TApos(unique_map_tally_file,genelist)
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ TA position }
+\keyword{ TA site mapping }% __ONLY ONE__ keyword per line
