@@ -102,6 +102,10 @@ In this table,
 
 ## Functions in detail
 
+#### Function structure
+
+![Function Structures](/home/unix/ruiyang/TnSeq/FiTnEss/function_structure.png =100x300)
+
 This package contains functions for three major steps of calling essential genes:
 
 #### Raw tally file processing
@@ -138,7 +142,24 @@ This package also contain data:
 
 ```
 
-## Theory Explanation
+## Method Explanation
+
+## Method Poster
+
+![name](/home/unix/ruiyang/TnSeq/FiTnEss/TnSeq_Poster_Method_v7_png.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
