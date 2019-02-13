@@ -21,15 +21,15 @@ tallyprepfun<-function(strain,file_location){
   }
   nm<-paste(st,"_support",sep="")
 
-  load("support_list")
+  load("data/support_list.rda")
 
-  support_data<-support_list[[st]]
-  nonPermissiveTA<-support_data[[1]]
-  homo<-support_data[[2]]
-  genelist<-support_data[[3]]
-  geneinfo<-support_data[[4]]
+  support_list<-support_list[[strain]]
+  nonPermissiveTA<-support_list[[1]]
+  homo<-support_list[[2]]
+  genelist<-support_list[[3]]
+  geneinfo<-support_list[[4]]
 
-  data("cluster_info")
+  load("data/cluster.rda")
   cluster2<-cluster %>% dplyr::filter(strain==st) %>% dplyr::select(Locus.CIA,strain,desc)
 
   colnames(genelist)<-c("V1","Locus.CIA","gene_start","gene_stop")
