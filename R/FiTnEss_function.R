@@ -1,14 +1,19 @@
+#FiTnEss_function
 #fitnessRun_function
 #Oct23_2018_FiTnEss_separate
 #Oct23_2018_FiTnEss
 
 #4. function to calculate parameters using Nta=median(Nta)
 
-fitnessRun<-function(strain,file_location,save_location,repeat_time=3){ #pre-defined as using Nta=10, and replicate for 5 times for each replicate
+FiTnEss_Run<-function(strain,
+                      file_location,
+                      permissive_file,homologous_file,gene_file,
+                      save_location,
+                      repeat_time=3){ #pre-defined as using Nta=10, and replicate for 5 times for each replicate
 
   ## 1. Usable tally file preparation
 
-  usable_tally_list<-tallyprepfun(strain,file_location)
+  usable_tally_list<-self_tallyprepfun(strain,file_location,permissive_file,homologous_file,genelist,geneinfo,cluster_info)
 
   ## 2. Calculating parameters
 
