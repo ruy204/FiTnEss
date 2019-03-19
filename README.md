@@ -6,7 +6,7 @@ _FiTnEss_ is a package using Transposon insertion sequencing data to identify es
 Original paper on bioRxiv: [Defining the core essential genome of Pseudomonas aeruginosa](https://www.biorxiv.org/content/early/2019/01/12/396689)
 
 
-#### **Quick start**
+### Quick start
 
 After installing FiTnEss package, run main FiTnEss function by ```FiTnEss_Run```
 
@@ -24,12 +24,23 @@ e.g. `"/home/your_folder/PA14_gene_file.txt"`
 e.g. `"/home/results_folder/results.xlsx"`
 - **_repeat_time_**: how many times to run the pipeline in order to obtain best results: by default, we run 3 times.
 
+#### Step 1. install FiTnEss package from github
+
 ```
 devtools::install_github("ruy204/FiTnEss")
+```
+
+#### Step 2. load FiTnEss and dependent packages
+
+```
 require(FiTnEss)
 library(dplyr)
 library(tidyr)
 library(openxlsx)
+```
+#### Step 3. run FiTnEss
+
+```
 FiTnEss_Run("UCBPP",
             "/home/TnSeq/data/test_data/PA14_M9_rep1_tally.txt",
             "/home/TnSeq/data/test_data/nonpermissive_TA_sites.txt",
