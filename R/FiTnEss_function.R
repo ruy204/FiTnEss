@@ -13,7 +13,7 @@ FiTnEss_Run<-function(strain,
 
   ## 1. Usable tally file preparation
 
-  usable_tally_list<-self_tallyprepfun(strain,file_location,permissive_file,homologous_file,genelist,geneinfo,cluster_info)
+  usable_tally_list<-self_tallyprepfun(strain,file_location,permissive_file,homologous_file,gene_file)
 
   ## 2. Calculating parameters
 
