@@ -10,6 +10,8 @@ Original paper on bioRxiv: [Defining the core essential genome of Pseudomonas ae
 
 After installing FiTnEss package, run main FiTnEss function by ```FiTnEss_Run```
 
+#### Function arguments
+
 Arguments in this function include: 
 - **_strain_**
 - **_file_location_**: path and name of tally file for run: 
