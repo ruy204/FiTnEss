@@ -40,15 +40,13 @@ callessfun<-function(file_location,usable_tally_list,parameter_list){
       subtot3<-subtot2
       y=subtot3
     })
-    print("okay here 1")
     names(plist)<-paste("Nta",ngenedf$Nta,sep="_")
-    print("okay here 2")
     pdata1<-do.call("rbind",plist)
 
     #adjusted p-value
 
     pdata1<-pdata1 %>% dplyr::select(Locus.CIA:pv1)
-    colnames(pdata1)[5]<-"pvalue"
+    colnames(pdata1)[4]<-"pvalue"
     #FWER
     pdata1$padj<-p.adjust(pdata1$pvalue)
     pdata1$Ess_fwer<-"NE_fwer"
