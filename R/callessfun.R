@@ -21,7 +21,7 @@ callessfun<-function(file_location,usable_tally_list,parameter_list){
     oridata<-data
     totdata<-oridata %>% dplyr::select(Locus.CIA,n) %>%
       group_by(Locus.CIA) %>% summarise(gtot=sum(n),Nta=n())
-    totdata<-totdata %>% group_by(Nta) %>% mutate(ngene=n()) %>% ungroup()
+    # totdata<-totdata %>% group_by(Nta) %>% mutate(ngene=n()) %>% ungroup()
 
     para=parameter_list
     lp=para[[x]]$lp[which(para[[x]]$cvm==min(para[[x]]$cvm))]
