@@ -40,7 +40,9 @@ callessfun<-function(file_location,usable_tally_list,parameter_list){
       subtot3<-subtot2
       y=subtot3
     })
+    print("okay here 1")
     names(plist)<-paste("Nta",ngenedf$Nta,sep="_")
+    print("okay here 2")
     pdata1<-do.call("rbind",plist)
 
     #adjusted p-value
