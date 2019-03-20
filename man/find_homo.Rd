@@ -1,20 +1,19 @@
 \name{find_homo}
 \alias{find_homo}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{find_homo
+\title{Find homologous TA sites from raw tally file
 %%  ~~function to do ... ~~
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+This function helps identify homologous TA sites from raw tally file.
 }
 \usage{
-find_homo(x)
+find_homo(tally,homofile)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
-}
+  \item{tally}{raw tally file, path and name of tally file for run, e.g. `/home/your_folder/your_tally.txt`}
+  \item{homofile}{path and name of homologous marker file generated from genomic pre-processing step}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -42,16 +41,8 @@ find_homo(x)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (x)
-{
-  }
-}
+find_homo("/home/TnSeq/data/test_data/PA14_M9_rep1_tally.txt",
+          "/home/TnSeq/data/test_data/homologous_TA_sites.txt")
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ ~homologous }

@@ -1,20 +1,22 @@
 \name{my_cvm}
 \alias{my_cvm}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{my_cvm
+\title{Modified version of CVM function from package goftest
 %%  ~~function to do ... ~~
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Modified version of \code{cvm.test} function from package goftest, introduced \code{Heaviside} function to truncate lower 0.25 percent of data.
+
+Parameters that construct a theoretical distribution with minimum CVM distance between actual data are optimized parameters.
 }
 \usage{
-my_cvm(x)
+my_cvm(data_vector,"function",parameters,...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
-}
+  \item{data_input}{vector of actual data used to calculate cvm distance between theoretical distribution and actual one}
+  \item{function}{function to construct theoretical distribution}
+  \item{parameters}{parameters used to construct theoretical distribution}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -42,16 +44,7 @@ my_cvm(x)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (x)
-{
-  }
-}
+my.cvm(data_vector,"jointfun",0.7,5,0.5,10)
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ ~cvm_distance }

@@ -1,20 +1,19 @@
 \name{denote_coreTA}
 \alias{denote_coreTA}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{denote_coreTA
+\title{Identify core TA sites based on TA location
 %%  ~~function to do ... ~~
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Identify core TA sites, and mark TA sites that locate within 50bp of gene ends. 
 }
 \usage{
-denote_coreTA(x)
+denote_coreTA(tally,bp=50)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
-}
+  \item{tally}{raw tally file, path and name of tally file for run, e.g. `/home/your_folder/your_tally.txt`}
+  \item{bp}{define core TA sites by defining distance from gene ends, default is 50bp}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -42,16 +41,8 @@ denote_coreTA(x)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (x)
-{
-  }
-}
+denote_coreTA("/home/TnSeq/data/test_data/PA14_M9_rep1_tally.txt",
+              50bp)
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ ~core_TA }

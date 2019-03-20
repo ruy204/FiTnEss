@@ -1,5 +1,5 @@
-\name{tallyprepfun}
-\alias{tallyprepfun}
+\name{self_tallyprepfun}
+\alias{self_tallyprepfun}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Preparing usable tally files from raw data
 %%  ~~function to do ... ~~
@@ -12,8 +12,8 @@ tallyprepfun(strain, file_location)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{strain}{identify strain.}
-  \item{file_location}{full path of all raw tally files, replicates are separated by \code{","} without space.}
+  \item{strain}{strain name}
+  \item{file_location}{full path of all raw tally files, replicates are separated by \code{","} without space}
 }
 \details{
 This is a function for raw tally data processing. Input data are raw tally files and strain type, output data are usable tally files for downstream analysis.

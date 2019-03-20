@@ -1,20 +1,22 @@
 \name{jointfun}
 \alias{jointfun}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{jointfun
+\title{Construct distribution using different parameter combinations
 %%  ~~function to do ... ~~
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+For each pair of parameters, this function constructs theoretical distributions which could be used in \code{my_cvm} function to identify optimized parameters.
 }
 \usage{
-jointfun(x)
+jointfun(data_input,lambda,lp,sigma,nta)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
-}
+  \item{data_input}{vector of data input to help fit parameters}
+  \item{lambda}{proportion of non-essential genes/whole genes}
+  \item{lp}{parameter for negative binomial distribution}
+  \item{sigma}{parameter for negative binomial distribution}
+  \item{nta}{number of TA sites in gene}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -42,16 +44,7 @@ jointfun(x)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (x)
-{
-  }
-}
+jointfun(data_vector,0.7,5,0,5,10)
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ ~fit_distribution }

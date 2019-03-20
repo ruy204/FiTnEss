@@ -1,23 +1,23 @@
 \name{callessfun}
 \alias{callessfun}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{callessfun
+\title{Identify essential genes using calculated parameters
 %%  ~~function to do ... ~~
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Call essential genes based on calculated parameters from function \code{calcparafun}
 }
 \usage{
-callessfun(x)
+callessfun(file_location,usable_tally_list,parameter_list)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
-}
+  \item{file_location}{full path of all raw tally files, replicates are separated by \code{","} without space}
+  \item{usable_tally_list}{output of \code{self_tallyprepfun}, usable tally files that prepared using raw tally and supporting files}
+  \item{parameter_list}{output parameter value from \code{calcparafun} function. Optimized parameters are used to construct null distribution.}
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+This function constructs potential non-essential distribution using calculated parameters, and calculate p-value for each gene to identify essential genes.
 }
 \value{
 %%  ~Describe the value returned
@@ -42,16 +42,8 @@ callessfun(x)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (x)
-{
-  }
-}
+callessfun("/home/TnSeq/data/test_data/PA14_M9_rep1_tally.txt",
+           usable_tally,parameter_list)
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ ~calculate_essential }
