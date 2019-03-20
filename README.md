@@ -60,12 +60,10 @@ FiTnEss_Run("PA14",
 
 #### Step 5. retrieve results
 
-```
 |Locus.CIA |gtot|Nta|pvalue  |padj|Ess_fwer|pfdr    |Ess_fdr|
 |----------|----|---|--------|----|--------|--------|-------|
 |PA14_00410|   5|  1|0.015989|   1| NE_fwer|0.093033| NE_fdr|
 
-```
 Each tab in the .xlsx file saves results from each replicate.
 Within each results table, there are 8 columns: 
 - Locus.CIA: gene index
