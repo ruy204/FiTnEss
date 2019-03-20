@@ -1,5 +1,5 @@
 ---
-title: "FiTnEss -- Identifying essential genes from TnSeq data"
+title: "_FiTnEss_ -- Identifying essential genes from TnSeq data"
 author: "Vignette Author"
 date: "`r Sys.Date()`"
 output: 
@@ -19,13 +19,13 @@ vignette: >
 
 Transposon insertion sequencing (Tn-Seq) is a high-throughput technique to generate and culture a large random collection of genetically perturbed bacteria, followed by sequencing to measure the frequency of each perturbation in the culture. Tn-Seq is used for the identification of essential genes by utilizing the fact that mutants carrying insertions in such genes are expected to be greatly depleted in the growth culture. 
 
-Here we present FiTnEss (Finding Tn-Seq Essential Genes) - a novel statistical method to identify gene essentiality using Tn-Seq data. The method contains only two global parameters that are estimated from the data. It is robust and has greater power to detect essential genes than most current existing methods.
+Here we present _FiTnEss_ (Finding Tn-Seq Essential Genes) - a novel statistical method to identify gene essentiality using Tn-Seq data. The method contains only two global parameters that are estimated from the data. It is robust and has greater power to detect essential genes than most current existing methods.
 
 ## Introduction
 
 #### General Introduction
 
-In this package, we present a major function called `fitnessRun` conducting one-step analysis from raw tally files to final essential gene calls. This major function consists of three analysis steps including 
+In this package, we present a major function called `FiTnEss_Run` conducting one-step analysis from raw tally files to final essential gene calls. This major function consists of three analysis steps including 
 
 - raw tally file processing
 - model fitting
@@ -35,40 +35,62 @@ In this package, we present a major function called `fitnessRun` conducting one-
 
 ```{r, dev='CairoPDF',eval=FALSE, warning=FALSE}
 #Main function
-fitnessRun(strain,file_location,save_location,repeat_time)
+FiTnEss_Run(strain,
+            tally_file,
+            non_permissive_file,
+            homologous_file,
+            gene_file,
+            results_save,
+            repeat_time)
 
 #Example
-fitnessRun(strain = "PA14",
-           file_location = "/home/folder/PA14/rep1.txt,/home/folder/PA14/rep2.txt,/home/folder/PA14/rep3.txt",
-           save_location = "/home/folder/PA14/results.xlsx",
-           repeat_time = 3)
+FiTnEss_Run("UCBPP",
+            "/home/TnSeq/data/test_data/PA14_M9_rep1_tally.txt",
+            "/home/TnSeq/data/test_data/nonpermissive_TA_sites.txt",
+            "/home/TnSeq/data/test_data/homologous_TA_sites.txt",
+            "/home/TnSeq/data/test_data/PA14_gene_file.txt",
+            "/home/TnSeq/test_result/test_results.xlsx",
+            repeat_time = 3)
 ```
-
-#### Data in this package
-
-Example data:  
-
-- `rawtally`: sample of raw tally file
-- `result`: sample of results table
-
-Pre-processing supporting files:
-
-For these supporting files, we currently offer nine strains for raw tally data processing: 
-
-`PA14, X13273, PS75, BWH015, BWH013, BWH005, BL23, CF77, 19660`
-
-Supporting files include: 
-
-- `support_list`: supporting file for raw tally file processing
-- `cluster`: gene description and cluster information, also used for raw tally processing
 
 ## Pipeline Workflow
 
-#### Load package
 
-```{r, dev='CairoPDF', warning=FALSE}
-library(FiTnEss)
+#### Step 1. install dependent packages
+
+```{r, dev='CairoPDF',eval=FALSE, warning=FALSE}
+install.packages(c("devtools","dplyr","fBasics","goftest","openxlsx","scales","stats","tidyr"))
 ```
+
+#### Step 2. install FiTnEss package from github
+
+```{r, dev='CairoPDF',eval=FALSE, warning=FALSE}
+devtools::install_github("ruy204/FiTnEss")
+```
+
+#### Step 3. load FiTnEss and dependent packages
+
+```{r, dev='CairoPDF',eval=FALSE, warning=FALSE}
+Packages <- c("devtools","dplyr","fBasics","goftest","openxlsx","scales","stats","tidyr")
+lapply(Packages, library, character.only = TRUE)
+
+require(FiTnEss)
+```
+
+#### Step 4. run FiTnEss
+
+```{r, dev='CairoPDF',eval=FALSE, warning=FALSE}
+FiTnEss_Run("UCBPP",
+            "/home/TnSeq/data/test_data/PA14_M9_rep1_tally.txt",
+            "/home/TnSeq/data/test_data/nonpermissive_TA_sites.txt",
+            "/home/TnSeq/data/test_data/homologous_TA_sites.txt",
+            "/home/TnSeq/data/test_data/PA14_gene_file.txt",
+            "/home/TnSeq/test_result/test_results.xlsx",
+            repeat_time = 3)
+```
+
+## Data format
+
 
 #### Raw tally file format
 
@@ -78,76 +100,26 @@ Raw tally file is in `.txt` format, and usually contains 6 columns:
 
 For example: 
 
-```{r, dev='CairoPDF', warning=FALSE}
-# load("data/rawtally.rda")
-head(rawtally)
+```{r, dev='CairoPDF', warning=FALSE,echo=FALSE}
+rawtally<-read.delim("/home/unix/ruiyang/TnSeq/data/test_data/PA14_M9_rep1_tally.txt")
 ```
 
-#### Run analysis
-
-```{r, dev='CairoPDF',eval=FALSE, warning=FALSE}
-fitnessRun(strain,file_location,save_location,repeat_time=3)
+```{r, dev='CairoPDF', warning=FALSE}
+head(rawtally)
 ```
 
 #### Output results
 
+```{r, dev='CairoPDF', warning=FALSE,echo=FALSE}
+library(openxlsx)
+results<-read.xlsx("/home/unix/ruiyang/TnSeq/data/test_data/test_result/test_results.xlsx")
+```
+
 ```{r, dev='CairoPDF', warning=FALSE}
-# load("data/result.rda")
-head(result)
+head(results)
 ```
 
 The results are automatically saved into `.xlsx` format with each tab contains results from one replicate. 
-
-In this table, 
-
-## Functions in detail
-
-#### Function structure
-
-![Function Structures](/home/unix/ruiyang/TnSeq/FiTnEss/function_structure.png =100x300)
-
-This package contains functions for three major steps of calling essential genes:
-
-#### Raw tally file processing
-
-```{r, dev='CairoPDF',eval=FALSE, warning=FALSE} 
-tallyprepfun(strain,raw_tally_location_name)
-```
-
-This function consisted of four parts: 
-
-- import tally file: `import_raw_tally()`
-- find homologous TA sites: `find_homo()`
-- calculate TA positions: `calc_TApos()`
-- denote core TA sites: `denote_coreTA()`
-
-```{r, dev='CairoPDF',eval=FALSE, warning=FALSE} 
-#Example
-tallyprepfun("PA14","/home/folder/PA14/raw_tally_replicate1.txt")
-```
-
-#### Model fitting
-
-```{r, dev='CairoPDF',eval=FALSE, warning=FALSE} 
-calcparafun(strain, usable_tally_list, save_location, rep_time)
-```
-
-
-
-#### Identify essential genes
-
-This package also contain data:
-
-```{r, dev='CairoPDF', warning=FALSE} 
-
-```
-
-## Method Explanation
-
-## Method Poster
-
-![name](/home/unix/ruiyang/TnSeq/FiTnEss/TnSeq_Poster_Method_v7_png.png)
-
 
 
 
