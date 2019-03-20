@@ -26,10 +26,10 @@ e.g. `"/home/your_folder/PA14_gene_file.txt"`
 e.g. `"/home/results_folder/results.xlsx"`
 - **_repeat_time_**: how many times to run the pipeline in order to obtain best results: by default, we run 3 times.
 
-#### Step 1. install dependent packages
+#### Step 1. install devtools package
 
 ```
-install.packages(c("devtools","dplyr","fBasics","goftest","openxlsx","scales","stats","tidyr"))
+install.packages("devtools")
 ```
 
 #### Step 2. install FiTnEss package from github
@@ -41,9 +41,6 @@ devtools::install_github("ruy204/FiTnEss")
 #### Step 3. load FiTnEss and dependent packages
 
 ```
-Packages <- c("devtools","dplyr","fBasics","goftest","openxlsx","scales","stats","tidyr")
-lapply(Packages, library, character.only = TRUE)
-
 require(FiTnEss)
 ```
 #### Step 4. run FiTnEss
