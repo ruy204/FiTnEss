@@ -58,3 +58,41 @@ FiTnEss_Run("PA14",
             repeat_time = 3)
 ```
 
+#### Step 5. retrieve results
+
+```
+|Locus.CIA |gtot|Nta|pvalue  |padj|Ess_fwer|pfdr    |Ess_fdr|
+|----------|----|---|--------|----|--------|--------|-------|
+|PA14_00410|   5|  1|0.015989|   1| NE_fwer|0.093033| NE_fdr|
+
+```
+Each tab in the .xlsx file saves results from each replicate.
+Within each results table, there are 8 columns: 
+- Locus.CIA: gene index
+- gtot: total reads for the gene
+- Nta: number of TA sites in this gene
+- pvalue: unadjusted p-value of being essential
+- padj: FWER-adjusted p-value
+- Ess_fwer: confident essential category
+- pfdr: FDR-adjusted p-value
+- Ess_fdr: candidate essential category
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
