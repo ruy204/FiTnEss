@@ -11,5 +11,5 @@ Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
 Imports: dplyr, fBasics, goftest, knitr, openxlsx, pastecs, rmarkdown, scales, stats, tidyr
-Suggests: ggplot2
+
 
