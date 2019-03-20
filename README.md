@@ -41,6 +41,9 @@ devtools::install_github("ruy204/FiTnEss")
 #### Step 3. load FiTnEss and dependent packages
 
 ```
+Packages <- c("devtools","dplyr","fBasics","goftest","openxlsx","scales","stats","tidyr")
+lapply(Packages, library, character.only = TRUE)
+
 require(FiTnEss)
 ```
 #### Step 4. run FiTnEss
