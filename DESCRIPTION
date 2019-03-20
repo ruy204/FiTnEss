@@ -10,6 +10,6 @@ LazyData: TRUE
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
-Imports: dplyr, fBasics, ggplot2, goftest, knitr, openxlsx, pastecs, rmarkdown, scales, stats, tidyr
-Suggests: graphics
+Imports: dplyr, fBasics, goftest, knitr, openxlsx, pastecs, rmarkdown, scales, stats, tidyr
+Suggests: ggplot2
 
