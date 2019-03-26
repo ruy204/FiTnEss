@@ -1,4 +1,3 @@
-
 #' Cluster information
 #'
 #' @format A data frame with variables:
@@ -27,7 +26,3 @@
 #' \item{geneinfo}{Denotes gene type (CDS), strand information and gene name}
 #' }
 "support_list"
-
-
-
-
