@@ -1,6 +1,8 @@
 # _FiTnEss_
 Finding Tn-Seq Essential genes (_FiTnEss_)
 
+Poster: FiTnEss_poster.pdf
+
 _FiTnEss_ is an R package using Transposon insertion sequencing data to identify essential genes in the genome. 
 
 Original paper on bioRxiv: [Defining the core essential genome of Pseudomonas aeruginosa](https://www.biorxiv.org/content/early/2019/01/12/396689)
