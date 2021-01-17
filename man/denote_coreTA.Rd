@@ -45,4 +45,4 @@ denote_coreTA("/home/TnSeq/data/test_data/PA14_M9_rep1_tally.txt",
               50bp)
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~core_TA }
+% \keyword{ ~core_TA }
