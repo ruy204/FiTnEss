@@ -46,4 +46,4 @@ callessfun("/home/TnSeq/data/test_data/PA14_M9_rep1_tally.txt",
            usable_tally,parameter_list)
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~calculate_essential }
+% \keyword{ ~calculate_essential }
